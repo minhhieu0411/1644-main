@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>
+		TBK Zone
+	</title>
+	<link rel="icon" href="/images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="/user-interface/css/bootstrap.css">
+	<link rel="stylesheet" href="/user-interface/css/style.css">
+	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/admin-interface/css/datepicker3.css">
+
+	<script src="/user-interface/js/jquery-3.1.1.min.js"></script>
+	<script src="/user-interface/js/bootstrap.js"></script>
+
+<body style="">
+	<nav class="navbar navbar-default text-center">
+		<div class="container-fluid">
+			<div id="banner">
+				<div class="row">
+					<div id="logo" class="col-md-4 col-sm-12 col-xs-12">
+						<h1>
+							<a href="/">
+								<img src="/images/logo(text).png" height="50">
+							</a>
+						</h1>
+					</div>
+					<div id="ship" class="col-md-8 col-sm-12 col-xs-12">
+						<img src="/images/banner-1.png">
+					</div>
+				</div>
+			</div>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<a href="/"><img src="/images/favicon.png" width="50px"></a>
+				<form class="navbar-form" action="/search" method="post" style="width:100w;">
+					<input class="form-control" style="max-width:100w" type="search" name="keyword" required=""
+						maxlength="10">
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<ul>
+						<a href="/login" style="text-decoration:none;">Login</a>
+						|
+						<a href="/register" style="text-decoration:none;">Register</a>
+					</ul>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<div class="container">
+
+		<!-- Body -->
+		<div id="body">
+			<div class="row">
+				<div class="col-md-9 col-sm-12 col-xs-12" style="margin-top:15px">
+					<div>
+						{{#each product}}
+						<div id="product">
+							<div id="prd-thumb" class="col-md-6 col-sm-12 col-xs-12 text-center">
+								<img width="360px" src="/{{url}}">
+							</div>
+							<div id="prd-intro" class="col-md-6 col-sm-12 col-xs-12">
+								<h3>Product: {{name}}</h3>
+								</h3>
+								<h5><span class="sl">Price: {{price}}</span></h5>
+								<p>
+									<span class="sl">Category: {{category}}</span>
+								</p>
+								<p id="prd-price">
+									<span class="sl">Publisher: {{publisher}}</span>
+								</p>
+								<p>
+									<span class="sl">Gift: DareU EH416 RGB JHeadphones</span>
+								</p>
+
+
+								<a onclick="return confirm('YOU NEED TO LOGIN FIRST!')" href="/login"><button
+										type="button" class="btn btn-primary">ADD TO CART</button></a>
+
+
+							</div>
+							<div id="prd-details" class="col-md-12 col-sm-12 col-xs-12 text-justify">
+								<p>
+								</p>
+							</div>
+						</div>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+		<!-- End Body -->
+
+		<!-- Footer -->
+		<div id="footer">
+			<div class="row">
+				<div id="footer-main" class="col-md-12 col-sm-12 col-xs-12">
+					<div id="logo" class="col-md-4 col-sm-12 col-xs-12">
+						<h1>
+							<a href="/">
+								<img src="/images/logo(text).png" width="300" height="30">
+							</a>
+						</h1>
+					</div>
+					<div class="text-center">
+						<a href="https://www.facebook.com/uniofgreenwich">
+							<i class="bx bxl-facebook bx-lg "></i>
+						</a>
+						<a href="https://www.instagram.com/uniofgreenwich/">
+							<i class="bx bxl-instagram bx-lg"></i>
+						</a>
+						<a href="https://www.youtube.com/user/UniversityGreenwich">
+							<i class="bx bxl-youtube bx-lg"></i>
+						</a>
+					</div>
+
+					<p>
+						<b>Address:</b>
+						Golden Park Tower, 2nd Pham Van Bach, Cau Giay, Ha Noi |
+						<b>Hotline</b>
+						0977 00 khong co
+					</p>
+					<p>TBK Zone ©</p>
+				</div>
+			</div>
+		</div>
+		<!-- End Footer -->
+	</div>
+
+
+</body>
+
+</html>

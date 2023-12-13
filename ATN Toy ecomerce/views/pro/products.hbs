@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <title>Home page</title>
+</head>
+
+<style>
+	body {
+		background-image: url('cm.png');
+		background-size: 100%;
+	}
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">ATN Toy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active" style="font-weight: bold;">
+                    <a class="nav-link" href="/">Account</a>
+                </li>
+                <li class="nav-item active" style="font-weight: bold;"> 
+                    <a class="nav-link" href="/products">View all products</a>
+                </li>
+                <li class="nav-item active" style="font-weight;">
+                    <a class="nav-link" href="/add">Add new product</a>
+                </li>
+                <li>
+                    <a href="/logout"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</button></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form action="/search" method="post" >
+    <div>
+        <input type="text" name="key" value="{{key}}" >
+        <button class="btn btn-primary" type="submit">Search</button></div>
+        
+    </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <th scope="row">{{_id}}</th>
+                    <td>{{name}}</td>
+                    <td><img src="/{{url}}" width="130" height="130"></td>
+                    <td>{{price}}</td>
+                    <td>{{category}}</td>
+                    <td>{{publisher}}</td>
+                    <td>
+                        <a href="/edit/{{_id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                        <a href="/delete/{{_id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <a href="/add"><button type="button" class="btn btn-info">Add new product</button></a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="/user-interface/css/bootstrap.css">
+	<link rel="stylesheet" href="/user-interface/css/style.css">
+	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/admin-interface/">
+
+	<script src="/user-interface/js/jquery-3.1.1.min.js"></script>
+	<script src="/user-interface/js/bootstrap.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-default text-center">
+		<div class="container-fluid">
+			<div id="banner">
+				<div class="row">
+					<div id="logo" class="col-md-4 col-sm-12 col-xs-12">
+						<h1>
+							<a href="/">
+								<img src="/images/logo(text).png" height="50">
+							</a>
+						</h1>
+					</div>
+					<div id="ship" class="col-md-8 col-sm-12 col-xs-12">
+						<img src="/images/banner-1.png">
+					</div>
+				</div>
+			</div>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<a href="/"><img src="/images/favicon.png" width="50px"></a>
+				<form class="navbar-form" action="/search" method="post" style="width:100w;">
+					<input class="form-control" style="max-width:100w" type="search" name="keyword" required=""
+						maxlength="10" control-id="ControlID-1">
+					<button type="submit" class="btn btn-default" control-id="ControlID-2">Search</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<ul>
+						<a href="/login" style="text-decoration:none;">Login</a>
+						|
+						<a href="/register" style="text-decoration:none;">Register</a>
+					</ul>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<div class="container">
+		<!-- Banner  -->
+		<!-- End Banner -->
+		<!-- Body -->
+		<div id="body">
+			<div id="main">
+				<div class="products">
+					<div class="row">
+						<hr>
+						<div class="row border">
+							<a href="https://www.playstation.com/en-vn/games/god-of-war-ragnarok/">
+								<img src="/images/ad1.png" width="1000" height="165" style="margin-left: 80px">
+							</a>
+						</div>
+						<hr>
+						<h2 class="h2-bar">All products</h2>
+						<div class="row">
+							{{#each products}}
+							<div class="col-md-3 col-sm-6 product-item text-center">
+								<a href="/detail/{{_id}}"><img width="180" height="180" src="/{{url}}"></a>
+								<h3>
+									<a href="">{{name}}</a>
+
+								</h3>
+								<p>Warranty:
+									1 years</p>
+								<p>Brand:
+									{{category}}</p>
+								<p class="price">Price:{{price}}$
+								</p>
+							</div>
+							{{/each}}
+
+						</div>
+						{{!-- {{/each}} --}}
+						<hr>
+						<div>
+							<div class="row border">
+								<a href="https://en.bandainamcoent.eu/elden-ring/elden-ring">
+									<img src="/images/ad2.png" width="1000" height="165" style="margin-left: 80px">
+								</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+			</div>
+			<!-- End Body -->
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="row">
+					<div id="footer-main" class="col-md-12 col-sm-12 col-xs-12">
+						<div id="logo" class="col-md-4 col-sm-12 col-xs-12">
+							<h1>
+								<a href="/">
+									<img src="/images/logo(text).png" width="300" height="30">
+								</a>
+							</h1>
+						</div>
+						<div class="text-center">
+							<a href="https://www.facebook.com/uniofgreenwich">
+								<i class="bx bxl-facebook bx-lg "></i>
+							</a>
+							<a href="https://www.instagram.com/uniofgreenwich/">
+								<i class="bx bxl-instagram bx-lg"></i>
+							</a>
+							<a href="https://www.youtube.com/user/UniversityGreenwich">
+								<i class="bx bxl-youtube bx-lg"></i>
+							</a>
+						</div>
+
+						<p>
+							<b>Address:</b>
+							Golden Park Tower, 2nd Pham Van Bach, Cau Giay, Ha Noi |
+							<b>Hotline</b>
+							0977 00 khong co
+						</p>
+						<p>TBK Zone ©</p>
+					</div>
+				</div>
+			</div>
+			<!-- End Footer -->
+		</div>
+</body>
+
+</html>

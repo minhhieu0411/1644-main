@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <title>Edit product</title>
+</head>
+
+
+<body style="width: 100%;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">ATN Toy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active" style="font-weight: bold;">
+                    <a class="nav-link" href="/">Account</a>
+                </li>
+                <li class="nav-item active" style="font-weight: bold;">
+                    <a class="nav-link" href="/products">View all products</a>
+                </li>
+                <li class="nav-item active" style="font-weight: bold;">
+                    <a class="nav-link" href="/add">Add new product</a>
+                </li>
+                <li>
+                    <a href="/logout"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log
+                            out</button></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="justify-content-center d-flex">
+            <h1>Edit this toy</h1>
+        </div>
+        <form action="/edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{prod._id}}">
+            <div class="form-group my-2">
+                <label for="name" class="font-weight-bold" style="color: black;">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{prod.name}}">
+            </div>
+            <div class="form-group my-2">
+                <label for="author" class="font-weight-bold" style="color: black;">Publisher</label>
+                <input type="text" class="form-control" name="pub" value="{{prod.publisher}}">
+            </div>
+            <div class="form-group my-2">
+                <label for="author" class="font-weight-bold" style="color: black;">Price</label>
+                <input type="text" class="form-control" name="price" value="{{prod.price}}">
+            </div>
+            <div class="form-group my-2">
+                <label for="cate" class="font-weight-bold" style="color: black;">Category</label>
+                <select name="cate" id="cate" class="my-3" value="{{prod.category}}">
+                    <option value="For 3+">For 3+</option>
+                    <option value="For 6+">For 6+</option>
+                    <option value="For 8+">For 8+</option>
+            </div>
+            <div class="form-group">
+                <label for="img" class="font-weight-bold">Image</label>
+                <input type="file" class="form-control" id="img" name="img">
+                <div class="bg-danger"><span class="text-white">{{error}}</span></div>
+            </div>
+
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+
+</html>
