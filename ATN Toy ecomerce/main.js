@@ -3,10 +3,13 @@ var session = require('express-session')
 var path = require('path');
 var multer = require('multer')
 var upload = multer({ dest: 'public/' })
+const { MongoClient } = require('mongodb');
 
-const { MongoClient } = require('mongodb')
-var mongoClient = require('mongodb').MongoClient
-var url = 'mongodb+srv://tungnqsgch210015:12345678zxc@cluster0.duovaod.mongodb.net/test'
+var mongoose = require("mongoose")
+var url = 'mongodb+srv://hieupmgch210606:123456789qweasd@cluster0.pa3dz3l.mongodb.net'
+mongoose.connect(url)
+.then(() => console.log ("Connect to DB succeed !"))
+.catch((err) => console.log (err))
 
 
 var app = express()
@@ -23,8 +26,7 @@ var storage = multer.diskStorage({
    
   var upload = multer({ storage: storage })
 
-// var publicDir = require('path').join(__dirname, "public");
-// app.use(express.static(publicDir));
+
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
@@ -75,37 +77,6 @@ app.get('/logout', (req, res) => {
     })
 })
 
-app.get('/signup', (req, res) => {
-    res.render('signup')
-})
-app.post('/login', async (req, res) => {
-    let user = req.body.user
-    let pass = req.body.pass
-    let name = req.body.name
-    let phone = req.body.phone
-    if (user.length < 3) {
-        res.render('signup', { 'error': ">, right" })
-        return
-    }
-    let server = await MongoClient.connect(url)
-    let dbo = server.db("Toy")
-
-    let check = await dbo.collection("account").find({ 'username': user }).toArray()
-    if (check.length > 0) {
-        let mes = "Username is existed"
-        res.render('signup', { 'user': user, 'name': name, 'phone': phone, 'mes': mes })
-    } else {
-        let account = {
-            'username': user,
-            'password': pass,
-            'name': name,
-            'phone': phone
-        }
-
-        await dbo.collection("account").insertOne(account)
-        res.redirect('/login')
-    }
-})
 
 app.get('/delete/:id',async (req,res)=>{
     const id = req.params.id

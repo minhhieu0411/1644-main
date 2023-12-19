@@ -74,7 +74,7 @@
                     <td>{{publisher}}</td>
                     <td>
                         <a href="/edit/{{_id}}"><button type="button" class="btn btn-success">Edit</button></a>
-                        <a href="/delete/{{_id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <a href="/delete/{{_id}}" onclick="return confirm('Are you sure to delete this mobile ?');"><button type="button" class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>
                 {{/each}}
