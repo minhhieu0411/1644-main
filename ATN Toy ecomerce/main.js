@@ -72,7 +72,7 @@ app.get('/logout', (req, res) => {
     req.session.userName = null
     req.session.save((err) => {
         req.session.regenerate((err2) => {
-            res.redirect('/login')
+            res.redirect('/login' )
         })
     })
 })
@@ -143,10 +143,11 @@ app.post('/insert', isAuthenticated, upload.single('img'), async (req, res) => {
 })
 
 app.post('/search', async (req, res) => {
-    let key = req.body.key
-    let server = await MongoClient.connect(url)
-    let dbo = server.db("Toy")
-    let products = await dbo.collection('product').find({ 'name': new RegExp(key, 'i') }).toArray()
+    var key = req.body.key
+    var server = await MongoClient.connect(url)
+    var dbo = server.db("Toy")
+    var products = await dbo.collection('product').find({ 'name': new RegExp(key, 'i') }).toArray()
+    var products = await MobileModel.find({ model: new RegExp(keyword, "i") }).populate('brand');
     res.render('pro/products', { 'products': products, "key": key })
 })
 
