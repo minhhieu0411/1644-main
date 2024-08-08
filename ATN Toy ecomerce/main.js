@@ -35,48 +35,9 @@ app.use(session({
     resave: false
 }))
 
-function isAuthenticated(req, res, next) {
-    let login = !req.session.userName
-    if (login)
-        res.redirect('/login')
-    else
-        next()
-}
-
-app.get('/login', (req, res) => {
-    res.render('login')
-})
-app.post('/checkLogin', async (req, res) => {
-    let name = req.body.user
-    let pass = req.body.pass
-    let server = await MongoClient.connect(url)
-    let dbo = server.db("Toy")
-    req.session.userName = name
-    let user = await dbo.collection("account").find({ $and: [{ 'username': name }, { 'password': pass }] }).toArray()
-    if (user.length > 0) {
-        res.redirect('/')
-    } else {
-        let mes = "Username or password is invalid"
-        res.render('login', { "message": mes, "username": name, "password": pass })
-    }
-})
-    +
-    app.get('/', isAuthenticated, async (req, res) => {
-        let server = await MongoClient.connect(url)
-        let dbo = server.db("Toy")
-        let user = await dbo.collection("account").find({ 'username': req.session.userName }).toArray()
-        res.render('home', { "user": user[0] })
-    })
-
-app.get('/logout', (req, res) => {
-    req.session.userName = null
-    req.session.save((err) => {
-        req.session.regenerate((err2) => {
-            res.redirect('/login' )
-        })
-    })
-})
-
+app.get('/', (req, res) => {
+    res.redirect('/products');
+});
 
 app.get('/delete/:id',async (req,res)=>{
     const id = req.params.id
@@ -112,11 +73,11 @@ app.get('/mainpage', async (req, res) => {
     res.render('pro/mainPage', { 'products': products })
 })
 
-app.get('/add', isAuthenticated, (req, res) => {
+app.get('/add', (req, res) => {
     res.render('pro/addNew')
 })
 
-app.post('/insert', isAuthenticated, upload.single('img'), async (req, res) => {
+app.post('/insert', upload.single('img'), async (req, res) => {
     let name = req.body.name
     let pub = req.body.pub
     let price = req.body.price
@@ -142,18 +103,9 @@ app.post('/insert', isAuthenticated, upload.single('img'), async (req, res) => {
     res.redirect('/products')
 })
 
-app.post('/search', async (req, res) => {
-    var key = req.body.key
-    var server = await MongoClient.connect(url)
-    var dbo = server.db("Toy")
-    var products = await dbo.collection('product').find({ 'name': new RegExp(key, 'i') }).toArray()
-    var products = await MobileModel.find({ model: new RegExp(keyword, "i") }).populate('brand');
-    res.render('pro/products', { 'products': products, "key": key })
-})
 
 
-
-app.post('/edit', isAuthenticated, upload.single('img'), async(req, res) => {
+app.post('/edit', upload.single('img'), async(req, res) => {
     const name = req.body.name
     const price = req.body.price
     const category = req.body.cate
@@ -173,7 +125,7 @@ app.post('/edit', isAuthenticated, upload.single('img'), async(req, res) => {
 })
 
 
-app.get('/edit/:id', isAuthenticated, async(req,res)=>{
+app.get('/edit/:id', async(req,res)=>{
     const file = req.file;
     const id = req.params.id
     let client = await MongoClient.connect(url)
